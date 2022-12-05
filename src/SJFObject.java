@@ -3,18 +3,14 @@ import java.util.*;
 public class SJFObject {
     private static final int MAX_MACHINE_TIME = 1000;
     private HashMap<Integer, Map.Entry<Integer, Integer>> inputTimesProcessSize;
-    //private ArrayList<Integer> processSizes;
     private int machineTime = MAX_MACHINE_TIME;
     private int index = 0;
 
-    public SJFObject(int length) {
+    public SJFObject() {
         inputTimesProcessSize = new HashMap<>();
-        //processSizes = new ArrayList<>(length);
     }
 
     public void addElement(int inputTime, int processSize){
-        //inputTimes.put(index, inputTime);
-        //processSizes.add(processSize);
         inputTimesProcessSize.put(index, Map.entry(inputTime, processSize) );
         machineTime = Math.min(inputTime, machineTime);
         index++;

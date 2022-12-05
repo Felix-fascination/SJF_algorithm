@@ -2,19 +2,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
-import java.util.TreeMap;
+
 
 class SJF extends JFrame implements ActionListener {
     JButton buttonControllers[] = new JButton[3];
     JTextField inputTimeText[], processSizeText[];
-    TreeMap<Integer,Integer> finishTime;
-    TreeMap<Integer,Integer> waitingTime;
-    TreeMap<Integer,Integer> inputTime;
-    TreeMap<Integer,Integer> processSize;
     JLabel processStrings[], firstMenuCols[];
     JPanel northLayout, southLayout;
     Container firstMenuContainer;
-    int numberOfProcesses, p;
+    int numberOfProcesses;
     String stringControllers[] = {"Расчитать", "Очистить", "Выход"};
     String outputCols[] = {"Process ID", "Время добавления ", "Время обработки ", "Время ожидания ", "Время завершения "};
 
