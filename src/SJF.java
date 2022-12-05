@@ -71,7 +71,7 @@ class SJF extends JFrame implements ActionListener {
         if (ae.getSource() == buttonControllers[0]) {
             int machineTime = 1;
             HashMap<Integer, Integer[]> processesData = new HashMap<>();
-            SJFObject processes = new SJFObject(numberOfProcesses);
+            SJFObject processes = new SJFObject();
             for(int i = 0; i < numberOfProcesses; i++){
                 processes.addElement(Integer.parseInt(inputTimeText[i].getText()),
                         Integer.parseInt(processSizeText[i].getText()));
