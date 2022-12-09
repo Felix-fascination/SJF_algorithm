@@ -39,25 +39,5 @@ public class SJFObject {
         machineTime = machineTime + minSizeProcess;
         inputTimesProcessSize.get(indexToDelete)[1] = MAX_MACHINE_TIME;
         return new int[]{indexToDelete, machineTime - minSizeProcess - inputTime, machineTime};
-        /*//ArrayList<Map.Entry<Integer, Map.Entry<Integer,   Integer>>> entries = new ArrayList<>();
-        for (Map.Entry<Integer, Map.Entry<Integer, Integer>> entry: inputTimesProcessSize.entrySet()){
-            if(entry.getValue().getKey() <= machineTime) entries.add(entry);
-        }
-        int inputTime = entries.get(0).getValue().getKey();
-        int indexToDelete = entries.get(0).getKey();
-        int minSize = entries.get(0).getValue().getValue();
-        int flag = minSize;
-
-        for (Map.Entry<Integer, Map.Entry<Integer, Integer>> entry: entries){
-            minSize = Math.min(entry.getValue().getValue(), minSize);
-            if (minSize != flag) {
-                inputTime = entry.getValue().getKey();
-                indexToDelete = entry.getKey();
-            }
-            flag = minSize;
-        }
-        inputTimesProcessSize.remove(indexToDelete);
-        machineTime = machineTime + minSize;
-        return new int[]{ machineTime, indexToDelete, machineTime - minSize - inputTime + 1 };*/
     }
 }
