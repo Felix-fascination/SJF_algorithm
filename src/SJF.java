@@ -1,18 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.HashMap;
+import java.util.Arrays;
 
 
 class SJF extends JFrame implements ActionListener {
-    JButton buttonControllers[] = new JButton[3];
-    JTextField inputTimeText[], processSizeText[];
-    JLabel processStrings[], firstMenuCols[];
+    JButton[] buttonControllers = new JButton[3];
+    JTextField[] inputTimeText, processSizeText;
+    JLabel[] processStrings, firstMenuCols;
     JPanel northLayout, southLayout;
     Container firstMenuContainer;
     int numberOfProcesses;
-    String stringControllers[] = {"Расчитать", "Очистить", "Выход"};
-    String outputCols[] = {"Process ID", "Время добавления ", "Время обработки ", "Время ожидания ", "Время завершения "};
+    String[] stringControllers = {"Расчитать", "Очистить", "Выход"};
+    String[] outputCols = {"Process ID", "Время добавления ", "Время обработки ", "Время ожидания ", "Время завершения "};
 
 
     public SJF() {
@@ -69,17 +69,17 @@ class SJF extends JFrame implements ActionListener {
 
 
         if (ae.getSource() == buttonControllers[0]) {
-            int machineTime = 1;
-            HashMap<Integer, Integer[]> processesData = new HashMap<>();
+            int[][] processesData = new int[numberOfProcesses][];
             SJFObject processes = new SJFObject();
             for(int i = 0; i < numberOfProcesses; i++){
                 processes.addElement(Integer.parseInt(inputTimeText[i].getText()),
                         Integer.parseInt(processSizeText[i].getText()));
             }
             for(int i = 0; i < numberOfProcesses; i++){
+                // 0 - index, 1 - waiting time, 2 - ending time
                 int[] results = processes.nextProcess();
-                processesData.put(results[1], new Integer[]{results[0], results[2] - 1 });
-                machineTime = machineTime + results[1];
+                processesData[results[0]] = Arrays.copyOfRange(results,1, 3);
+
             }
 
             //end for loop
@@ -90,9 +90,9 @@ class SJF extends JFrame implements ActionListener {
                 northLayout.add(new JLabel("процесс " + (i + 1)));
                 northLayout.add(new JLabel("   " + Integer.parseInt(inputTimeText[i].getText())));
                 northLayout.add(new JLabel("" + Integer.parseInt(processSizeText[i].getText())));
-                northLayout.add(new JLabel("" + processesData.get(i)[1]));
-                northLayout.add(new JLabel(""+ processesData.get(i)[0]) );
-                sum += processesData.get(i)[1];
+                northLayout.add(new JLabel("" + processesData[i][0]));
+                northLayout.add(new JLabel(""+ processesData[i][1]) );
+                sum += processesData[i][0];
             }
             avg = sum / numberOfProcesses;
             String str2 = "Среднее время ожидания " + avg;
